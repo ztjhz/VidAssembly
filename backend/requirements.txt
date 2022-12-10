@@ -1,4 +1,5 @@
+git+https://github.com/ztjhz/yolov7-slides-extraction.git
 yt-dlp
 flask
 flask-cors
-git+https://github.com/ztjhz/yolov7-slides-extraction.git
+waitress

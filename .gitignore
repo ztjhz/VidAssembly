@@ -1,0 +1,8 @@
+__pycache__
+/venv
+/workdir
+*.mp4
+*.png
+*.pt
+*.db
+.env

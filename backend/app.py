@@ -9,8 +9,7 @@ from uuid import uuid4
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-
-from lib.api import get_result, get_srt, send, upload_file
+from lib.api import get_result, get_sentences, get_srt, send, upload_file
 from lib.keyframe_determination import determine_keyframes
 from lib.slides_dectection import extract_slides
 from lib.translation import translate
@@ -245,11 +244,15 @@ def begin(uuid: str, video_type: str, url: Optional[str], language_src: str,
         os.remove(glob(os.path.join(work_dir, 'preprocessed.*'))[0])
         print("Video files removed")
 
+        sentences_data = get_sentences(transcript_id)
+        sentences_text = '\n'.join(
+            [sentence['text'] for sentence in sentences_data['sentences']])
+
         text_translated = ''
         if language_dst is None:
             text_translated = ''
         else:
-            text_translated = translate(res['text'],
+            text_translated = translate(sentences_text,
                                         src=language_src,
                                         dst=language_dst)
 

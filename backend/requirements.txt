@@ -3,3 +3,4 @@ yt-dlp
 flask
 flask-cors
 waitress
+python-dotenv

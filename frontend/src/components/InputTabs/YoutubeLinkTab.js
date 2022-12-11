@@ -20,9 +20,8 @@ const YoutubeLinkTab = ({ handleErrorMessage }) => {
     e.preventDefault();
 
     let youtubeUrl = e.target[0].value;
-    let videoLanguage = e.target[1].value;
-    let translateLanguage = e.target[2].value;
-    let server = e.target[3].value;
+    let translateLanguage = e.target[1].value;
+    let server = e.target[2].value;
 
     if (!isValidYoutubeUrl(youtubeUrl))
       return handleErrorMessage('Invalid YouTube url!');
@@ -31,7 +30,6 @@ const YoutubeLinkTab = ({ handleErrorMessage }) => {
     let sendFormData = new FormData();
     sendFormData.append('type', 'youtube');
     sendFormData.append('url', youtubeUrl);
-    sendFormData.append('videoLanguage', videoLanguage);
     sendFormData.append('translateLanguage', translateLanguage);
     sendFormData.append('server', server);
 

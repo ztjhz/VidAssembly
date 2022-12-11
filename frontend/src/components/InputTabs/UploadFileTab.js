@@ -12,12 +12,10 @@ const UploadFileTab = ({ handleErrorMessage }) => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    let videoLanguage = e.target[1].value;
-    let translateLanguage = e.target[2].value;
-    let server = e.target[3].value;
+    let translateLanguage = e.target[1].value;
+    let server = e.target[2].value;
 
     sendFormData.append('type', 'upload');
-    sendFormData.append('videoLanguage', videoLanguage);
     sendFormData.append('translateLanguage', translateLanguage);
     sendFormData.append('server', server);
 

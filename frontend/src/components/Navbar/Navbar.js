@@ -5,7 +5,7 @@ import { ThemeToggleButton } from '../ThemeToggleButton'
 const navlinks = [
   { label: 'Home', href: '/', routeIdentifier: '/' },
   { label: 'Upload/Retrieve', href: '/input', routeIdentifier: '/input' },
-  { label: 'Sample', href: '/result/123', routeIdentifier: '/result' },
+  { label: 'Sample', href: '/result/019a0862-2190-455f-bdba-9d8f83a459b9', routeIdentifier: '/result' },
 ]
 
 const NavLink = ({ label, href, routeIdentifier }) => {
@@ -17,7 +17,10 @@ const NavLink = ({ label, href, routeIdentifier }) => {
 
   return (
     <div 
-      onClick={() => navigate(href)}
+      onClick={() => {
+        if (label === 'Sample') localStorage.setItem('server', 'cloud');
+        navigate(href);
+      }}
       className={location.pathname === routeIdentifier ||
         (href !== '/' && location.pathname.includes(routeIdentifier)) ?
           activeLinkStyle :

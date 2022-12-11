@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useToast } from '../../hooks/useToast';
-import { isValidUuid } from '../InputTabs/UuidTab';
-import Spinner from '../Spinner/Spinner';
+import { isValidUuid } from '../InputTabs';
+import { Spinner } from '../Spinner';
+import { Title } from '../Hero';
 
 const STATUS_DONE = 200;
 
 const Result = () => {
   const { uuid } = useParams();
   const navigate = useNavigate();
-  const { alert, showAlert } = useToast();
+  const { alert: toastAlert, showAlert: showToastAlert } = useToast();
 
   let [resultData, setResultData] = useState({ status: 0 });
   let fetchUrl = useRef('');
@@ -30,7 +31,7 @@ const Result = () => {
     // Error from server
     if (resultData?.status === 500) {
       clearTimeout(getReqTimeout);
-      return showAlert('Process failed.');
+      return showToastAlert('Process failed.');
     }
   }, [resultData]);
 
@@ -45,7 +46,7 @@ const Result = () => {
     fetchUrl.current =
       server === 'cloud'
         ? `https://ayaka-apps.shn.hk/vidassembly/result/${uuid}`
-        : `http://127.0.0.1:5000/result/${uuid}`; // CHANGE API ENDPOINT
+        : `http://127.0.0.1:5000/result/${uuid}`;
 
     // reset status to 0 (to ensure re-rendering of results page when navigating between different uuids)
     setResultData((r) => ({ ...r, status: 0 }));
@@ -59,7 +60,7 @@ const Result = () => {
     <>
       <div className='flex justify-center mt-10'>
         {resultData.status === 500 ? (
-          <div className='flex justify-center mt-10'>{alert}</div>
+          <div className='flex justify-center mt-10'>{toastAlert}</div>
         ) : resultData.status < 2 ? (
           <div className='scale-150 p-10'>
             <Spinner
@@ -69,10 +70,13 @@ const Result = () => {
             />
           </div>
         ) : (
-          <div className='mx-3 max-w-2xl w-full bg-white rounded-t-lg border shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden'>
-            <TabContainer currTab={tab} setTab={setTab} />
-            <ContentContainer tab={tab} resultData={resultData} />
-          </div>
+          <>
+            <Title />
+            <div className='mx-3 max-w-2xl w-full bg-white rounded-t-lg border shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden'>
+              <TabContainer currTab={tab} setTab={setTab} />
+              <ContentContainer tab={tab} resultData={resultData} />
+            </div>
+          </>
         )}
       </div>
     </>
@@ -215,7 +219,6 @@ const Summary = ({ summaries }) => {
         ) : (
           <></>
         )}
-        {/* CHANGE API ENDPOINT */}
         <div className='mt-2 text-center'>{s.text}</div>
         <br />
         <hr class='my-6 h-px bg-gray-200 border-0 dark:bg-gray-700' />

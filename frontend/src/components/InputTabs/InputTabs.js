@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useToast } from '../../hooks/useToast';
+import { Title } from '../Hero';
 import UploadFileTab from './UploadFileTab';
 import UuidTab from './UuidTab';
 import YoutubeLinkTab from './YoutubeLinkTab';
@@ -25,7 +26,8 @@ const InputTabs = () => {
 
   return (
     <>
-      <div className='flex justify-center my-10 mx-3'>
+      <Title />
+      <div className='flex justify-center py-10 px-3'>
         <div className='max-w-2xl w-full bg-white rounded-lg border shadow-md dark:bg-gray-800 dark:border-gray-700'>
           {/* Tab Headers */}
           <div

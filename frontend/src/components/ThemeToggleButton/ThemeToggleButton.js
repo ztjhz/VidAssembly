@@ -32,7 +32,7 @@ const ThemeToggleButton = () => {
   });
 
   return (
-    <div className='flex justify-end mt-10 mr-10'>
+    <div className='flex justify-end'>
       {/* Light Mode */}
       <button
         id='headlessui-switch-12-lightmode'

@@ -29,7 +29,7 @@ const UuidTab = ({ handleErrorMessage }) => {
     let fetchUrl =
       server === 'cloud'
         ? `https://ayaka-apps.shn.hk/vidassembly/result/${uuid}`
-        : `http://127.0.0.1:5000/result/${uuid}`; // CHANGE API ENDPOINT
+        : `http://127.0.0.1:5000/result/${uuid}`;
     const res = await fetch(fetchUrl);
     const data = await res.json();
 

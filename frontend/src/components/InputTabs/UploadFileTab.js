@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DatabaseTypeInput from './Inputs/DatabaseTypeInput';
-import VideoLanguageInput from './Inputs/VideoLanguageInput';
 import TranslatedLanguageInput from './Inputs/TranslatedLanguageInput';
-import Spinner from '../Spinner/Spinner';
+import { Spinner } from '../Spinner';
 
 const UploadFileTab = ({ handleErrorMessage }) => {
   const navigate = useNavigate();
@@ -36,7 +35,7 @@ const UploadFileTab = ({ handleErrorMessage }) => {
     let fetchUrl =
       server === 'cloud'
         ? 'https://ayaka-apps.shn.hk/vidassembly/video'
-        : 'http://127.0.0.1:5000/video'; // CHANGE API ENDPOINT
+        : 'http://127.0.0.1:5000/video';
     const res = await fetch(fetchUrl, {
       method: 'POST',
       body: sendFormData,
@@ -78,9 +77,6 @@ const UploadFileTab = ({ handleErrorMessage }) => {
             placeholder='accepted format: mp3, mp4, or wav'
           />
         </div>
-
-        {/* Original Language */}
-        <VideoLanguageInput />
 
         {/* Translated Language */}
         <TranslatedLanguageInput />

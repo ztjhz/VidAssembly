@@ -1,19 +1,29 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-import InputTabs from './components/InputTabs/InputTabs';
-import ThemeToggleButton from './components/ThemeToggleButton/ThemeToggleButton';
-import Result from './components/Result/Result';
+import { Hero, Title } from './components/Hero';
+import { InputTabs } from './components/InputTabs';
+import { Result } from './components/Result';
+import { Navbar } from './components/Navbar'
+
+const Container = ({children}) => {
+  return (
+    <div className="pt-32 h-screen">
+      {children}
+    </div>
+  )
+}
 
 function App() {
   return (
-    <div className='lg:text-center bg-sky-100 dark:bg-slate-900'>
-      <ThemeToggleButton />
-      <Header />
-      <Routes>
-        <Route path='/' element={<InputTabs />} />
-        <Route path='/result/:uuid' element={<Result />} />
-      </Routes>
+    <div className='lg:text-center min-h-screen bg-sky-100 dark:bg-slate-900'>
+      <Navbar />
+      <Container>
+        <Routes>
+          <Route path='/' element={<Hero />} />
+          <Route path='/input' element={<InputTabs />} />
+          <Route path='/result/:uuid' element={<Result />} />
+        </Routes>
+      </Container>
     </div>
   );
 }

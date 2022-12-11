@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useToast } from '../hooks/useToast';
+import { useToast } from '../../hooks/useToast';
 import { isValidUuid } from '../InputTabs/UuidTab';
 import Spinner from '../Spinner/Spinner';
 

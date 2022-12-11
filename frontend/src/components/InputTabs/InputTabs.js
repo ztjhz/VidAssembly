@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useToast } from '../hooks/useToast';
+import { useToast } from '../../hooks/useToast';
 import UploadFileTab from './UploadFileTab';
 import UuidTab from './UuidTab';
 import YoutubeLinkTab from './YoutubeLinkTab';

@@ -12,6 +12,7 @@ endpoint = "https://api.assemblyai.com/v2/transcript"
 config = {
     "auto_highlights": True,
     "auto_chapters": True,
+    "speaker_labels": True
 }
 
 headers = {"authorization": API_KEY, "content-type": "application/json"}

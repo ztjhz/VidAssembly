@@ -36,3 +36,19 @@ def extract_keyphrase(res):
 def extract_summaries(res):
     """Returns summaries"""
     return res['chapters']
+
+
+def extract_speaker_percentage(res):
+    speaker_total = {}
+    total_duration = res['audio_duration'] * 1000  # convert to milliseconds
+    for speaker_data in res['utterances']:
+        speaker = speaker_data['speaker']
+        start = speaker_data['start']
+        end = speaker_data['end']
+        speaker_total[speaker] = speaker_total.get(speaker, 0) + end - start
+
+    speaker_percentage = {}
+    for speaker, total in speaker_total.items():
+        speaker_percentage[speaker] = min(total / total_duration, 1)
+
+    return speaker_percentage

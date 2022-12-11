@@ -14,7 +14,8 @@ from lib.keyframe_determination import determine_keyframes
 from lib.slides_dectection import extract_slides
 from lib.translation import translate
 from lib.utils import (allowed_file, download_youtube_video, extract_keyphrase,
-                       extract_summaries, get_extension, validate_youtube_url)
+                       extract_speaker_percentage, extract_summaries,
+                       get_extension, validate_youtube_url)
 from lib.video_preprocessing import speedup_1_6x
 
 VIDEO_FOLDER = 'workdir'
@@ -55,6 +56,13 @@ conn.executescript("""
                 headline TEXT NOT NULL,
                 image TEXT,
                 original_image TEXT,
+                FOREIGN KEY (uuid) REFERENCES results
+            );
+            CREATE TABLE IF NOT EXISTS speakers (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                uuid TEXT NOT NULL,
+                speaker TEXT NOT NULL,
+                percentage REAL NOT NULL,
                 FOREIGN KEY (uuid) REFERENCES results
             );
             """)
@@ -105,6 +113,18 @@ def result(uuid):
         for row in res:
             result["keywords"].append(row[2])
 
+    # get speakers
+    res = cur.execute("SELECT * from speakers WHERE uuid = ?",
+                      (uuid, )).fetchall()
+
+    if len(res) != 0:
+        result["speakers"] = []
+        for row in res:
+            result["speakers"].append({
+                "speaker": row[2],
+                "percentage": row[3]
+            })
+
     return jsonify(result), 200
 
 
@@ -119,7 +139,7 @@ def video():
 
         print(video_type, video_language, translate_language)
 
-        if not video_type or video_language is None or translate_language is None:
+        if not video_type or translate_language is None:
             return "Incomplete form!", 400
 
         curr_uuid = str(uuid4())
@@ -217,6 +237,14 @@ def begin(uuid: str, video_type: str, url: Optional[str], language_src: str,
         cur.execute("UPDATE results set status = ? WHERE uuid = ?", (3, uuid))
         conn.commit()
         print("Keyphrases extracted")
+
+        # extract speakers
+        speakers_percentage = extract_speaker_percentage(res)
+        for speaker, percentage in speakers_percentage.items():
+            cur.execute(
+                "INSERT INTO speakers (uuid, speaker, percentage) VALUES (?, ?, ?)",
+                (uuid, speaker, percentage))
+        conn.commit()
 
         # extract summary
         summaries = extract_summaries(res)

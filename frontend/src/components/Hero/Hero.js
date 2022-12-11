@@ -13,7 +13,7 @@ const Hero = () => {
           </h1>
           <p className="mt-5 text-center text-lg text-black dark:text-white opacity-70">
             Turning any videos into fun, bite-sized content for you to digest quickly | Powered by {' '}
-            <a href="https://www.assemblyai.com/" rel="noopener noreferrer" target="_blank"  className="hover:cursor-pointer hover:font-bold px-2 bg-indigo-700 dark:bg-teal-500 text-white dark:text-black rounded">Assembly AI</a>
+            <a href="https://www.assemblyai.com/" rel="noopener noreferrer" target="_blank"  className="hover:cursor-pointer hover:font-bold px-2 bg-indigo-700 dark:bg-teal-500 text-white dark:text-black rounded inline-block">Assembly AI</a>
           </p>
           <div
             onClick={() => navigate('/input')}

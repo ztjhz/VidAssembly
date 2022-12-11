@@ -54,7 +54,7 @@ const Result = () => {
 
   // ------------------------------------------------------------------------------------------------------------------ //
 
-  const [tab, setTab] = useState('transcription');
+  const [tab, setTab] = useState('summary');
 
   return (
     <>
@@ -84,7 +84,7 @@ const Result = () => {
 };
 
 const TabContainer = ({ currTab, setTab }) => {
-  const tabs = ['Transcription', 'Translation', 'Keywords', 'Summary'];
+  const tabs = ['Summary', 'Transcription', 'Translation', 'Keywords', 'Speakers'];
   const selectedTabStyles = [
     'text-blue-600',
     'dark:text-teal-500',
@@ -127,6 +127,19 @@ const ContentContainer = ({ tab, resultData }) => {
   return (
     <div className='border-t border-gray-200 dark:border-gray-600 p-4'>
       <div className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 text-left'>
+        {/* Summary */}
+        {tab === 'summary' &&
+          (resultData.status < 4 ? (
+            <Spinner
+              completionStatusId={4}
+              curStatusId={resultData.status}
+              text='Summarising... 🧾'
+            />
+          ) : (
+            <Summary summaries={resultData.summaries} />
+          ))}
+
+        {/* Transcription */}
         {tab === 'transcription' &&
           (resultData.status < 2 ? (
             <Spinner
@@ -138,6 +151,7 @@ const ContentContainer = ({ tab, resultData }) => {
             <TranscriptionContent content={resultData.transcript} />
           ))}
 
+        {/* Translation */}
         {tab === 'translation' &&
           (resultData.status < 6 ? (
             <Spinner
@@ -148,6 +162,8 @@ const ContentContainer = ({ tab, resultData }) => {
           ) : (
             <TranscriptionContent content={resultData.translated} />
           ))}
+        
+        {/* Keywords */}
         {tab === 'keywords' &&
           (resultData.status < 3 ? (
             <Spinner
@@ -158,16 +174,19 @@ const ContentContainer = ({ tab, resultData }) => {
           ) : (
             <Keywords keywords={resultData.keywords} />
           ))}
-        {tab === 'summary' &&
-          (resultData.status < 4 ? (
+        
+        {/* Speakers */}
+        {tab === 'speakers' &&
+          (resultData.status < 3 ? (
             <Spinner
-              completionStatusId={4}
+              completionStatusId={3}
               curStatusId={resultData.status}
-              text='Summarising... 🧾'
+              text='Evaluating speakers... 🎤'
             />
           ) : (
-            <Summary summaries={resultData.summaries} />
+            <Speakers keywords={resultData.speakers} />
           ))}
+        
       </div>
     </div>
   );
@@ -226,5 +245,34 @@ const Summary = ({ summaries }) => {
     );
   });
 };
+
+const Speakers = ({ speakers }) => {
+  const StatsCard = ({ speaker, fractional_percentage }) => {
+    return (
+      <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-3/4 sm:w-1/3">
+          <div className="bg-white p-5">
+              <div className="flex items-start">
+                  <div className="text-center mt-0 ml-2 text-left">
+                      <h3 className="text-sm leading-6 font-medium text-gray-400">Speaker {speaker}</h3>
+                      <p className="text-3xl font-bold text-black">{fractional_percentage*100}%</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <div className="max-w-full py-6 mx-auto sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-center">
+          {speakers.map(s => (
+            <StatsCard key={`${s.speaker}-${s.percentage}`} speaker={s.speaker} fractional_percentage={s.percentage} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default Result;

@@ -1,5 +1,6 @@
 {
   "name": "VidAssembly",
+  "homepage": "https://vidassembly.tjh.sg",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

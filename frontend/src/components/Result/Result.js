@@ -58,7 +58,7 @@ const Result = () => {
 
   return (
     <>
-      <div className='flex justify-center mt-10'>
+      <div className='flex flex-col justify-center mt-10 items-center'>
         {resultData.status === 500 ? (
           <div className='flex justify-center mt-10'>{toastAlert}</div>
         ) : resultData.status < 2 ? (
@@ -72,7 +72,7 @@ const Result = () => {
         ) : (
           <>
             <Title />
-            <div className='mx-3 max-w-2xl w-full bg-white rounded-t-lg border shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden'>
+            <div className='mt-3 mx-3 max-w-2xl w-full bg-white rounded-t-lg border shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden'>
               <TabContainer currTab={tab} setTab={setTab} />
               <ContentContainer tab={tab} resultData={resultData} />
             </div>

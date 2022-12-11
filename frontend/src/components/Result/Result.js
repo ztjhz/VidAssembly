@@ -184,7 +184,7 @@ const ContentContainer = ({ tab, resultData }) => {
               text='Evaluating speakers... 🎤'
             />
           ) : (
-            <Speakers keywords={resultData.speakers} />
+            <Speakers speakers={resultData.speakers} />
           ))}
         
       </div>
@@ -266,7 +266,7 @@ const Speakers = ({ speakers }) => {
     <div>
       <div className="max-w-full py-6 mx-auto sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center">
-          {speakers.map(s => (
+          {speakers?.map(s => (
             <StatsCard key={`${s.speaker}-${s.percentage}`} speaker={s.speaker} fractional_percentage={s.percentage} />
           ))}
         </div>

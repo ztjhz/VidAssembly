@@ -9,7 +9,7 @@ const DemoLink = () => {
     e.preventDefault();
 
     const res = await fetch(
-      'https://ayaka-apps.shn.hk/vidassembly/result/85bbf493-58a9-40cd-8bf6-e71e28071d8f'
+      'https://ayaka-apps.shn.hk/vidassembly/result/019a0862-2190-455f-bdba-9d8f83a459b9'
     );
     const data = await res.json();
 
@@ -21,11 +21,11 @@ const DemoLink = () => {
     // // navigate to page
     if (
       location.pathname.startsWith('/result/') &&
-      location.pathname !== `/result/85bbf493-58a9-40cd-8bf6-e71e28071d8f`
+      location.pathname !== `/result/019a0862-2190-455f-bdba-9d8f83a459b9`
     ) {
       navigate('/'); // refresh page to re-render
-      navigate(`/result/85bbf493-58a9-40cd-8bf6-e71e28071d8f`);
-    } else navigate(`/result/85bbf493-58a9-40cd-8bf6-e71e28071d8f`);
+      navigate(`/result/019a0862-2190-455f-bdba-9d8f83a459b9`);
+    } else navigate(`/result/019a0862-2190-455f-bdba-9d8f83a459b9`);
   };
 
   return (

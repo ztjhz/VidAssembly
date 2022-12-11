@@ -1,7 +1,7 @@
-<h1 align="center">VidAssembly</h1>
+<h2 align="center"><b>VidAssembly</b></h2>
 
 <p align="center">
-<img src="vidassembly.png" alt="vidassembly" width="200" />
+<img src="public/icon.png" alt="vidassembly" width="100" />
 </p>
 
 <h4 align="center"><b>Transcribe, Summarise, Translate, Analyse Speakers, Extract Keywords and Slides</b></h4>
@@ -36,8 +36,8 @@
 ## 👋🏻 Introducing `VidAssembly`
 
 <p align="center">
-    <a href="https://vidassembly.tjh.sg" target="_blank"/>
-        <img src="preview.png" alt="landing" />
+    <a href="https://vidassembly.tjh.sg" target="_blank">
+        <img src="public/landing.jpg" alt="landing" width=800 />
     </a>
 </p>
 
@@ -67,6 +67,37 @@ Liked it? Please give a ⭐️ to **VidAssembly**.
 - 💬 Analyse speakers during
 - ❗ Extract important keywords from the video
 - 🖼️ Extract important slides from the video
+
+## 🏗️ App Architecture
+
+<p align="center">
+    <img src="public/diagram.png" alt="diagram" />
+</p>
+
+### Frontend
+
+- React.js
+- Tailwind CSS
+- Deploy on GitHub pages
+
+### Backend
+
+- Flask server
+- Deploy on a GPU machine
+- Relay to an Internet-facing VPS
+- Nginx reverse proxy
+- Cloudflare protection
+
+### Artificial Intelligence
+
+- [Assembly AI](https://www.assemblyai.com/)
+- YOLOv7
+
+### Tools
+
+- OpenCV
+- yt-dlp
+- ffmpeg
 
 ## 🏗️ Setting up `VidAssembly` for Backend Development
 

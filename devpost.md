@@ -47,9 +47,10 @@ Be it a one hour long lecture, or a 30-minute zoom meeting, ByteVid can do:
 - Nginx reverse proxy
 - Cloudflare protection
 
-### API
+### Artificial Intelligence
 
 - [Assembly AI](https://www.assemblyai.com/)
+- YOLOv7
 
 ### Tools
 

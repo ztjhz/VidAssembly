@@ -1,13 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Hero, Title } from './components/Hero';
+import { Hero } from './components/Hero';
 import { InputTabs } from './components/InputTabs';
 import { Result } from './components/Result';
 import { Navbar } from './components/Navbar'
 
 const Container = ({children}) => {
   return (
-    <div className="pt-32 h-screen">
+    <div className="pt-32 min-h-screen">
       {children}
     </div>
   )

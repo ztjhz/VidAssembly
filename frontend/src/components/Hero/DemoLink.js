@@ -14,7 +14,7 @@ const DemoLink = () => {
     const data = await res.json();
 
     if (data.status === -1) return alert('Uuid does not exist in database!');
-    else if (data.status === 500) return alert('Process failed.');
+    else if (data.status === 500) return alert(data.error_message);
 
     localStorage.setItem('server', 'cloud');
 

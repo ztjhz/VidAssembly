@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ThemeToggleButton } from '../ThemeToggleButton'
 
@@ -29,7 +29,8 @@ const NavLink = ({ label, href, routeIdentifier }) => {
 }
 
 const Navbar = () => {
-  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  // const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  let drawerIsOpen = false;
   
   const toggleDrawer = (close) => {
     // document.getElementbyId must be inside this function to get the element after the component is mounted
@@ -37,16 +38,18 @@ const Navbar = () => {
 
     if (close === true || drawerIsOpen) {
       drawer.classList.add('hidden');
-      setDrawerIsOpen(false);
+      // setDrawerIsOpen(false);
+      drawerIsOpen = false;
     } else {
       drawer.classList.remove('hidden');
-      setDrawerIsOpen(true);
+      // setDrawerIsOpen(true);
+      drawerIsOpen = true;
     }
 
   }
 
   return (
-    <nav id="navbar" className="bg-transparent px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-400 dark:border-gray-600">
+    <nav id="navbar" className="bg-transparent backdrop-blur px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-400 dark:border-gray-600">
       <div id="container" className="container flex flex-wrap items-center justify-between mx-auto">
         <a id="logo" href="/" className="flex items-center">
             <img src="./favicon.ico" className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
@@ -56,7 +59,7 @@ const Navbar = () => {
           {/* <div> needed to maintain ThemeToggleButton styling */}
           <div id='theme-toggle-button'>
             {/* need the following line of code to fix the ui bug of opening the navbar drawer in light mode removing the ThemeToggleButton */}
-            {drawerIsOpen ? <ThemeToggleButton /> : <div><ThemeToggleButton /></div>}
+            <ThemeToggleButton />
           </div>
           
           {/* Hamburger Menu Icon */}

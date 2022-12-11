@@ -31,7 +31,7 @@ const Result = () => {
     // Error from server
     if (resultData?.status === 500) {
       clearTimeout(getReqTimeout);
-      return showToastAlert('Process failed.');
+      return showToastAlert(resultData.error_message);
     }
   }, [resultData]);
 
@@ -221,7 +221,7 @@ const Summary = ({ summaries }) => {
         )}
         <div className='mt-2 text-center'>{s.text}</div>
         <br />
-        <hr class='my-6 h-px bg-gray-200 border-0 dark:bg-gray-700' />
+        <hr className='my-6 h-px bg-gray-200 border-0 dark:bg-gray-700' />
       </div>
     );
   });

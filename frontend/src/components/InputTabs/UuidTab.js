@@ -35,7 +35,7 @@ const UuidTab = ({ handleErrorMessage }) => {
 
     if (data.status === -1)
       return handleErrorMessage('Uuid does not exist in database!');
-    else if (data.status === 500) return handleErrorMessage('Process failed.');
+    else if (data.status === 500) return handleErrorMessage(data.error_message);
 
     // navigate to page
     navigate(`/result/${uuid}`);

@@ -29,7 +29,6 @@ const NavLink = ({ label, href, routeIdentifier }) => {
 }
 
 const Navbar = () => {
-
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   
   const toggleDrawer = (close) => {
@@ -43,19 +42,21 @@ const Navbar = () => {
       drawer.classList.remove('hidden');
       setDrawerIsOpen(true);
     }
+
   }
 
   return (
-    <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-      <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="https://flowbite.com/" className="flex items-center">
+    <nav id="navbar" className="bg-transparent px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-400 dark:border-gray-600">
+      <div id="container" className="container flex flex-wrap items-center justify-between mx-auto">
+        <a id="logo" href="/" className="flex items-center">
             <img src="./favicon.ico" className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
-            <span className="self-center text-xl font-bold whitespace-nowrap dark:text-teal-500">VidAssembly</span>
+            <span id="title" className="self-center text-xl font-bold whitespace-nowrap dark:text-teal-500">VidAssembly</span>
         </a>
         <div className="flex md:order-2">
           {/* <div> needed to maintain ThemeToggleButton styling */}
-          <div>
-            <ThemeToggleButton />
+          <div id='theme-toggle-button'>
+            {/* need the following line of code to fix the ui bug of opening the navbar drawer in light mode removing the ThemeToggleButton */}
+            {drawerIsOpen ? <ThemeToggleButton /> : <div><ThemeToggleButton /></div>}
           </div>
           
           {/* Hamburger Menu Icon */}
@@ -72,7 +73,7 @@ const Navbar = () => {
         </div>
         {/* Links */}
         <div className="items-center justify-between w-full md:flex md:w-auto md:order-1 hidden" id="navbar-sticky">
-          <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-sky-100 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navlinks.map(navlink => (
               <li key={navlink.label} onClick={() => toggleDrawer(true)}>
                 <NavLink label={navlink.label} href={navlink.href} routeIdentifier={navlink.routeIdentifier} />

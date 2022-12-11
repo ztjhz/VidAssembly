@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DemoLink from './DemoLink';
 
-const highlightedText = (text) => {
+export const highlightedText = (text) => {
   return (
     <mark className='px-2 bg-indigo-700 dark:bg-teal-500 text-white dark:text-black rounded'>
       {text}
@@ -12,7 +12,7 @@ const highlightedText = (text) => {
 
 export const Title = () => {
   return (
-    <p className='text-3xl font-semibold leading-8 tracking-tight text-indigo-700 hover:text-indigo-500 sm:text-4xl dark:text-teal-500 dark:hover:text-teal-600'>
+    <p id="title" className='text-3xl font-semibold leading-8 tracking-tight text-indigo-700 hover:text-indigo-500 sm:text-4xl dark:text-teal-500 dark:hover:text-teal-600 flex justify-center'>
       <Link to='/' relative='path'>
         VidAssembly
       </Link>
@@ -39,6 +39,9 @@ const Description = () => {
         {highlightedText('summarize')}, and {highlightedText('translate')}{' '}
         your videos, plus extract {highlightedText('key words')} and{' '}
         {highlightedText('important slides')} for easy reference.
+      </p>
+      <p className='max-w-2xl text-md text-gray-500 mx-auto dark:text-gray-300'>
+        You can also view {highlightedText('audience participation rate')} too!
       </p>
       <p className='mt-4 max-w-2xl text-md text-gray-500 mx-auto dark:text-gray-300'>
         Say goodbye to boredom and hello to VidAssembly today!
